@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Streamer Overlay - Display</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="overlay-body">
+
+    <!-- OBSに映る文字だけのエリア -->
+    <div id="overlay-container" class="layout-horizontal">
+        <div id="game-title-display" class="game-title">OVERWATCH 2</div>
+        
+        <div class="main-counters">
+            <div class="counter-item win-group">
+                <span class="counter-label">WIN:</span>
+                <span id="win-count" class="counter-num">0</span>
+            </div>
+            <span class="counter-slash">/</span>
+            <div class="counter-item loss-group">
+                <span class="counter-label">LOSS:</span>
+                <span id="loss-count" class="counter-num">0</span>
+            </div>
+        </div>
+
+        <div id="sub-counter-display" class="sub-counter-box">
+            <span id="sub-label-display">DEATH</span>: <span id="sub-count" class="sub-num">0</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
