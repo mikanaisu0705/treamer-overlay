@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Streamer Overlay Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎮 Streamer Overlay Hub</h1>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab('counter-tab')">📊 カウンター</button>
+            <button class="tab-btn" onclick="openTab('settings-tab')">⚙️ 画面設定</button>
+            <button class="tab-btn" onclick="openTab('feedback-tab')">💬 フィードバック</button>
+        </div>
+
+        <div class="tab-content">
+            
+            <div id="counter-tab" class="tab-panel active">
+                <h2>配信画面プレビュー</h2>
+                <div class="preview-box" id="overlay-preview">
+                    <p class="preview-label">OBS画面での見え方</p>
+                    
+                    <div id="overlay-container" class="layout-horizontal">
+                        <div id="game-title-display" class="game-title">OVERWATCH 2</div>
+                        
+                        <div class="main-counters">
+                            <div class="counter-item win-group">
+                                <span class="counter-label">WIN:</span>
+                                <span id="win-count" class="counter-num">0</span>
+                            </div>
+                            <span class="counter-slash">/</span>
+                            <div class="counter-item loss-group">
+                                <span class="counter-label">LOSS:</span>
+                                <span id="loss-count" class="counter-num">0</span>
+                            </div>
+                        </div>
+
+                        <div id="sub-counter-display" class="sub-counter-box">
+                            <span id="sub-label-display">DEATH</span>: <span id="sub-count" class="sub-num">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>コントローラー</h2>
+                <div class="control-panel">
+                    <div class="control-row">
+                        <button class="btn btn-win" onclick="changeCount('win', 1)">WIN +1</button>
+                        <button class="btn btn-loss" onclick="changeCount('loss', 1)">LOSS +1</button>
+                    </div>
+                    <div class="control-row">
+                        <button class="btn btn-sub" onclick="changeCount('sub', 1)"><span class="sub-btn-label">SUB</span> +1</button>
+                        <button class="btn btn-sub-minus" onclick="changeCount('sub', -1)">-1</button>
+                        <button class="btn btn-reset" onclick="resetAll()">RESET ALL</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="settings-tab" class="tab-panel">
+                <h2>表示内容の設定</h2>
+                <div class="settings-group">
+                    <label>🎮 プレイ中のゲーム名:</label>
+                    <input type="text" id="game-title-input" value="OVERWATCH 2" oninput="updateSettings()">
+                    
+                    <label>📝 サブカウンターの名前 (例: DEATH, 参加数):</label>
+                    <input type="text" id="sub-label-input" value="DEATH" oninput="updateSettings()">
+                </div>
+
+                <h2>レイアウト設定</h2>
+                <div class="settings-group">
+                    <label>📐 カウンターの配置:</label>
+                    <select id="layout-select" onchange="updateSettings()">
+                        <option value="layout-horizontal">横並び (WIN / LOSS)</option>
+                        <option value="layout-vertical">縦並び (WIN と LOSS を上下に)</option>
+                    </select>
+                </div>
+
+                <h2>カラーカスタマイズ（色変更機能）</h2>
+                <div class="color-picker-grid">
+                    <div class="picker-item">
+                        <label>🔴 WIN 文字色</label>
+                        <input type="color" id="color-win" value="#ff4655" onchange="updateSettings()">
+                    </div>
+                    <div class="picker-item">
+                        <label>🔵 LOSS 文字色</label>
+                        <input type="color" id="color-loss" value="#00f0ff" onchange="updateSettings()">
+                    </div>
+                    <div class="picker-item">
+                        <label>⚪ その他文字色</label>
+                        <input type="color" id="color-text" value="#ffffff" onchange="updateSettings()">
+                    </div>
+                    <div class="picker-item">
+                        <label>⚫ 文字の影（縁取り）</label>
+                        <input type="color" id="color-shadow" value="#000000" onchange="updateSettings()">
+                    </div>
+                </div>
+                <div class="settings-group" style="margin-top: 15px;">
+                    <label>🎬 プレビュー背景色（確認用）:</label>
+                    <select id="bg-select" onchange="togglePreviewBg()">
+                        <option value="dark">配信ツール背景（ダーク）</option>
+                        <option value="transparent">透明（実際のOBSでの見え方）</option>
+                        <option value="green">グリーンバック（クロマキー確認用）</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="feedback-tab" class="tab-panel">
+                <h2>ご意見・ご要望</h2>
+                <p>より良いツール作りのため、アンケートへのご協力をお願いいたします！バグ報告や「こんな機能が欲しい」というアイデアをお待ちしています。</p>
+                <a href="https://docs.google.com/forms/" target="_blank" class="feedback-link">
+                    📋 開発者へアンケートを送る
+                </a>
+            </div>
+
+        </div>
+
+        <div class="obs-url-section">
+            <h3>🔗 OBS用ブラウザソースURL</h3>
+            <p class="obs-instruction">以下のURLをコピーして、OBSのブラウザソースに貼り付けてください。</p>
+            <div class="url-copy-box">
+                <input type="text" id="obs-url-input" readonly value="http://localhost:3000/overlay.html">
+                <button onclick="copyURL()">コピー</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

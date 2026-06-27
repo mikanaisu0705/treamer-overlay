@@ -1,0 +1,261 @@
+/* 全体のリセットと共通設定 */
+body {
+    background-color: #121216;
+    color: #e2e8f0;
+    font-family: 'Segoe UI', Meiryo, sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 650px;
+    background-color: #1e1e26;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    font-size: 26px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #818cf8;
+}
+
+h2 {
+    font-size: 16px;
+    color: #94a3b8;
+    border-left: 4px solid #4f46e5;
+    padding-left: 8px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+/* タブ切り替え */
+.tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    background-color: #141419;
+    padding: 6px;
+    border-radius: 8px;
+}
+
+.tab-btn {
+    flex: 1;
+    background: none;
+    border: none;
+    color: #94a3b8;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.tab-btn:hover {
+    color: #ffffff;
+    background-color: #252532;
+}
+
+.tab-btn.active {
+    background-color: #4f46e5;
+    color: white;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* プレビューボックス */
+.preview-box {
+    background-color: #0b0b0d;
+    border: 2px solid #2d2d3d;
+    border-radius: 10px;
+    padding: 35px 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s;
+}
+
+.preview-label {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    font-size: 11px;
+    color: #475569;
+    margin: 0;
+}
+
+/* --- オーバーレイ本体の見た目調整（カスタム可能部分） --- */
+#overlay-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'Arial Black', Impact, sans-serif;
+    color: #ffffff;
+}
+
+.game-title {
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.main-counters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-size: 42px;
+}
+
+/* 縦並びレイアウト用スタイル */
+#overlay-container.layout-vertical .main-counters {
+    flex-direction: column;
+    gap: 5px;
+}
+#overlay-container.layout-vertical .counter-slash {
+    display: none;
+}
+
+.counter-item {
+    display: inline-block;
+}
+
+.sub-counter-box {
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+/* 操作パネル・ボタン */
+.control-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.control-row {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    flex: 1;
+    padding: 14px;
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+
+.btn:active { transform: scale(0.97); }
+
+.btn-win { background-color: #ff4655; color: white; }
+.btn-loss { background-color: #00f0ff; color: #0f172a; }
+.btn-sub { background-color: #3b82f6; color: white; }
+.btn-sub-minus { flex: 0.3; background-color: #1e293b; color: #94a3b8; border: 1px solid #334155; }
+.btn-reset { background-color: #ef4444; color: white; }
+
+/* 設定フォームのスタイル */
+.settings-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.settings-group input, .settings-group select {
+    background-color: #141419;
+    border: 1px solid #334155;
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.color-picker-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    background-color: #141419;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.picker-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.picker-item label {
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+.picker-item input[type="color"] {
+    width: 100%;
+    height: 38px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background: none;
+}
+
+/* フィードバック */
+.feedback-link {
+    display: inline-block;
+    background-color: #10b981;
+    color: white;
+    text-decoration: none;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.feedback-link:hover { background-color: #059669; }
+
+/* OBS用URL */
+.obs-url-section {
+    background-color: #141419;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #2d2d3d;
+    margin-top: 30px;
+}
+
+.obs-instruction { font-size: 12px; color: #64748b; margin-top: 0; }
+.url-copy-box { display: flex; gap: 8px; }
+.url-copy-box input {
+    flex: 1;
+    background-color: #0b0b0d;
+    border: 1px solid #334155;
+    color: #10b981;
+    padding: 10px;
+    border-radius: 6px;
+    font-family: monospace;
+}
+.url-copy-box button {
+    background-color: #4f46e5;
+    border: none;
+    color: white;
+    padding: 0 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.url-copy-box button:hover { background-color: #4338ca; }
